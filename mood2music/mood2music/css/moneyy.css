@@ -1,0 +1,77 @@
+body{
+    margin:0;
+    background-color: rgb(85, 140, 85);
+    text-align: center;
+}
+div,nav{
+    box-sizing: border-box;
+}
+.font-title{
+    font-size: 16px;
+}
+.font-menu-sm{
+    font-size: 20px;
+}
+.align-box-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-name{
+    background-color: rgb(255, 243, 224);
+    width: 600px;
+    height: 75px;
+    margin-bottom: auto;
+margin-top: 15px;
+border-radius: 20px;
+padding: 10px;
+
+}
+
+
+.header-title{
+    padding: 1px;
+    color: rgb(237, 184, 184);
+    width: 800px;
+    height: 150px;
+    margin-top: 15px;
+}
+
+.main-menu{
+    width: 900px;
+    margin-bottom: auto;
+margin-top: 10px;
+padding: 1px;
+}
+
+.main-menu div{
+    margin: 10px;
+    float: left;
+    width: 200px;
+    height: 60px;
+    border: 3px solid  rgb(240, 150, 100);
+border-radius: 5px;
+position: relative;
+}
+
+.main-menu button {
+    background-color: rgb(85, 140, 85);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.bt-main{
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+}
+.main-menu div :hover{
+   background-color: rgb(240, 150, 100);
+   transition: all 0.5s;
+}
+
+    

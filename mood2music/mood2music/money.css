@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  background-color: rgb(85, 140, 85);
+  text-align: center;
+}
+
+div, nav {
+  box-sizing: border-box;
+}
+
+.header-name {
+  background-color: rgb(255, 243, 224);
+  width: 600px;
+  height: 75px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.header-title {
+  color: rgb(250, 250, 250);
+  width: 800px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.main-menu {
+  width: 900px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding: 1px;
+}
+
+.main-menu-mood {
+  margin: 10px;
+  float: left;
+  width: 200px;
+  height: 60px;
+  border: 3px solid rgb(240, 150, 100);
+  border-radius: 5px;
+}/*# sourceMappingURL=money.css.map */

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibin’ Mood</title>
+    <!-- CSS 경로는 실제 위치에 맞춰 수정하세요. -->
+    <link href="../css/moneyy.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="header-name align-box-center">
+      <h3>Vibin' Mood</h3>
+    </nav>
+
+    <div class="header-title align-box-center">
+      <h1>
+        <img
+          src="https://cdn3.emoji.gg/emojis/6124-chillguy.png"
+          width="30px"
+          height="30px"
+          alt="ChillGuy"
+        />
+        Vibin'
+      </h1>
+      <p class="font-menu-sm">Here’s your song recommendation:</p>
+      <div id="song-recommendation" class="recommendation-box"></div>
+    </div>
+
+    <script>
+      // URL 쿼리 파라미터에서 recommendations 가져오기
+      const urlParams = new URLSearchParams(window.location.search);
+      const recommendations = urlParams.get("recommendations");
+
+      if (recommendations) {
+        document.getElementById("song-recommendation").innerText =
+          recommendations;
+      } else {
+        document.getElementById("song-recommendation").innerText =
+          "No recommendation available.";
+      }
+    </script>
+  </body>
+</html>

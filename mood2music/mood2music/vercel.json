@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+
+      { "src": "api/recommend.js", "use": "@vercel/node" },
+
+      { "src": "index.html", "use": "@vercel/static" }
+    ],
+    "routes": [
+
+      { "src": "/api/(.*)", "dest": "api/recommend.js" },
+
+      { "src": "/(.*)", "dest": "/index.html" }
+    ]
+  }
+  
