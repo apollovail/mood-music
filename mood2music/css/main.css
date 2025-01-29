@@ -1,0 +1,171 @@
+@font-face {
+    font-family: 'nanum';
+    src: url(../font/NanumSquareAcB.woffs)
+}
+
+body{
+    margin:0; 
+    background-color: aqua;
+    /* font-family: 'nanum'; */
+}
+
+div,input{
+    box-sizing: border-box;
+}
+
+.cart{
+
+    margin: auto;
+    width: 100%;
+    min-width: 200px;
+    max-width: 600px;
+}
+.cart-title{
+    margin-top: 30px;
+}
+
+table{
+    box-sizing: border-box;
+    border-collapse: collapse;
+border-radius: 8px;
+
+}
+thead th{
+    text-align: center;
+    font-size: 15px;
+    font-family: monospace;
+    border-bottom: 1px solid cadetblue;
+  }
+  
+  tbody tr {
+    border-bottom: 1px solid cadetblue;
+  }
+  
+.w-1{ 
+    width: 50%;
+    padding: 5px;
+padding-left: 10px;
+}
+.w-2{
+    width:15%;
+    text-align: right;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.w-3{
+    width: 15%;
+    /* text-align: right; */
+    padding: 5px;
+    padding-left: 10px;
+}
+.w-4{
+    width: 20%;
+text-align: center;
+font-weight: 1000;
+}
+
+.cart-footer-left{
+    width: 50%;
+    float: left;
+}
+
+.cart-footer-right{
+    width: 50%;
+    float: left;
+}
+.pay-button{
+    border: none;
+    border-radius: 5px;
+    float: right;
+    width: 80%;
+    height: 60px;
+    background-color: navy;
+    cursor: pointer;
+}
+.pay-button:focus{
+    background-color: rgb(9, 0, 18);
+}
+.cart-image{
+    width: 30%;
+height: auto;
+float: left;
+
+}
+.image-explain{
+    margin-left: 90px;
+}
+
+.image-explain h3{
+    margin: 0;
+    margin-bottom: 5px;
+    margin-left:2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.image-explain p{
+    font-size: 13px;
+    font-family: monospace;
+    color: cadetblue;
+    margin: 0;
+    margin-left: 2px;
+}
+
+.top-text{
+    vertical-align: top;
+}
+.top-bottom{
+    vertical-align: bottom;
+}
+
+span{
+    vertical-align: middle;
+}
+.글씨{    font-size: 18px;
+    font-family: monospace;
+    color: cadetblue;}
+    .total-price{
+        font-size: 20px;
+    font-family: monospace;
+    color: navy;
+text-align: left;
+    }
+button span{
+    color: white;
+    font-size: 18px;
+    font-family: monospace;
+} 
+
+.item-box{
+
+margin: auto;
+max-width: 1000px;
+width: 80%;
+max-width: 1000px;
+text-align: center;
+}
+.item-react{
+width: 25%;
+
+float: left;
+background-color: rgb(255, 255, 255);
+}
+@media screen and (max-width:1200px) {
+    .item-react{
+width: 50%
+    
+}}
+@media screen and (max-width:576px) {
+    .item-react{
+width: 100%;
+    
+}
+}
+
+
+
+    
+
+
+       
+    

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document</title>
+
+    <link href="fontawesome1/css/all.min.css" rel="stylesheet" />
+    <link href="css/moneyy.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="header-name align-box-center">
+      <h3>thismoodthatmusic</h3>
+    </nav>
+
+    <div class="header-title align-box-center">
+      <h1>"No cap, these tunes are about to hit different for you."</h1>
+      <p class="font-menu-sm">"What’s the mood?"</p>
+      <div>
+        <select name="genre" id="">
+          <option value="">Jazz</option>
+          <option value="">Hiphop</option>
+          <option value="">ROCK</option>
+          <option value="">POP</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="main-menu align-box-center">
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Beamin’"
+          data-url="OTHER/beamin.html"
+        >
+          <span>😁 Beamin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Reflectin’"
+          data-url="OTHER/reflectin.html"
+        >
+          🤔 Reflectin’
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Gloomin’"
+          data-url="OTHER/gloomin.html"
+        >
+          <span>😢 Gloomin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Crackin’"
+          data-url="OTHER/crackin.html"
+        >
+          <span>🤣 Crackin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Bluein’"
+          data-url="OTHER/bluein.html"
+        >
+          <span>😶 Bluein’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Dreamin’"
+          data-url="OTHER/dreamin.html"
+        >
+          <span>🤩 Dreamin’</span>
+        </button>
+      </div>
+      <div>
+        <button class="bt-main" data-mood="Vibin’" data-url="OTHER/vibin.html">
+          <span>
+            <img
+              src="https://cdn3.emoji.gg/emojis/6124-chillguy.png"
+              width="22px"
+              height="22px"
+              alt="ChillGuy"
+            />
+            Vibin’
+          </span>
+        </button>
+      </div>
+      <div>
+        <button class="bt-main" data-mood="Lovin’" data-url="OTHER/lovin.html">
+          <span>😍 Lovin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Freakin’"
+          data-url="OTHER/freakin.html"
+        >
+          <span>🤨 Freakin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Hornin’"
+          data-url="OTHER/hornin.html"
+        >
+          <span>🤤 Hornin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Snoozin’"
+          data-url="OTHER/snoozin.html"
+        >
+          <span>🥱 Snoozin’</span>
+        </button>
+      </div>
+      <div>
+        <button class="bt-main" data-mood="Ragin’" data-url="OTHER/ragin.html">
+          <span>🔥 Ragin’</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Spookin’"
+          data-url="OTHER/spookin.html"
+        >
+          <span>😨 Spookin’</span>
+        </button>
+      </div>
+      <div>
+        <button class="bt-main" data-mood="Empty.." data-url="OTHER/empty.html">
+          <span>😔 Empty..</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Stressin’"
+          data-url="OTHER/stressin.html"
+        >
+          <span>😬 Stressin</span>
+        </button>
+      </div>
+      <div>
+        <button
+          class="bt-main"
+          data-mood="Deepin’"
+          data-url="OTHER/deepin.html"
+        >
+          <span>🤓 Deepin’</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- OpenAI API 호출 스크립트 -->
+    <script>
+      // 이제는 OpenAI 서버 대신, "Vercel API"를 호출할 예정!
+      const apiUrl =
+        "https://[내-Vercel-프로젝트-주소].vercel.app/api/recommend";
+
+      const buttons = document.querySelectorAll(".bt-main");
+      buttons.forEach((button) => {
+        button.addEventListener("click", async () => {
+          const mood = button.getAttribute("data-mood") || "Default Mood";
+          const url = button.getAttribute("data-url");
+
+          if (!url) {
+            alert("URL이 설정되지 않았습니다!");
+            return;
+          }
+
+          try {
+            // fetch 할 때, 더 이상 apiKey를 보내지 않음!
+            const response = await fetch(apiUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ mood }),
+            });
+
+            const data = await response.json();
+            // OpenAI 응답 내용
+            const recommendations = data.choices?.[0]?.message?.content || "";
+
+            window.location.href = `${url}?recommendations=${encodeURIComponent(
+              recommendations
+            )}`;
+          } catch (error) {
+            console.error(error);
+            alert("노래 추천 중 오류가 발생했습니다.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

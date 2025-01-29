@@ -1,0 +1,54 @@
+$메인색다크그린: rgb(85, 140, 85);
+$버튼색코랄: rgb(240, 150, 100);
+
+%가로정렬 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%가운데정렬 {
+  margin: 100px auto;
+}
+
+body {
+  margin: 0;
+  background-color: $메인색다크그린;
+  text-align: center;
+}
+
+div, nav {
+  box-sizing: border-box;
+}
+
+.header-name {
+  background-color: rgb(255, 243, 224);
+  width: 600px;
+  height: 75px;
+  margin-bottom: auto;
+  @extend %가로정렬;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.header-title {
+  color: rgb(250, 250, 250);
+  width: 800px;
+  height: 150px;
+  @extend %가로정렬;
+}
+
+.main-menu {
+  width: 900px;
+  margin-bottom: auto;
+  @extend %가로정렬;
+  padding: 1px;
+  
+  div {
+    margin: 10px;
+    float: left;
+    width: 200px;
+    height: 60px;
+    border: 3px solid $버튼색코랄;
+    border-radius: 5px;
+  }
+}
