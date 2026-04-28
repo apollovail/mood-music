@@ -7,145 +7,163 @@
     <link href="fontawesome1/css/all.min.css" rel="stylesheet" />
     <link href="css/moneyy.css" rel="stylesheet" />
     <style>
+      .genre-section {
+        margin-top: 18px;
+        margin-bottom: 38px;
+        padding: 0 20px;
+      }
+      .genre-label {
+        text-align: center;
+        color: #f5efe6;
+        font-size: 0.95rem;
+        letter-spacing: 0.18em;
+        margin-bottom: 14px;
+        opacity: 0.85;
+      }
       .genre-selector {
         display: flex;
-        gap: 10px;
         flex-wrap: wrap;
+        gap: 10px 12px;
         justify-content: center;
-        margin-top: 14px;
+        max-width: 920px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 5;
       }
       .genre-btn {
-        padding: 7px 18px;
-        border-radius: 20px;
+        padding: 8px 18px;
+        border-radius: 22px;
         border: 2px solid #c8a96e;
         background: transparent;
         color: #f5efe6;
         font-size: 0.95rem;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.18s, color 0.18s;
+        transition: background 0.18s, color 0.18s, transform 0.12s;
         letter-spacing: 0.04em;
+        white-space: nowrap;
+        flex: 0 0 auto;
       }
-      .genre-btn.active, .genre-btn:hover {
+      .genre-btn:hover { transform: translateY(-1px); }
+      .genre-btn.active {
         background: #c8a96e;
         color: #3a5a3a;
       }
-      .genre-label {
-        font-size: 0.82rem;
-        opacity: 0.75;
-        margin-top: 10px;
-        letter-spacing: 0.06em;
+      .mood-grid-wrapper {
+        margin-top: 18px;
+        clear: both;
+      }
+      .result-box {
+        max-width: 720px;
+        margin: 30px auto;
+        padding: 22px 28px;
+        border: 2px solid #c8a96e;
+        border-radius: 14px;
+        background: rgba(0,0,0,0.18);
+        color: #f5efe6;
+        display: none;
+      }
+      .result-box.show { display: block; }
+      .result-title {
+        font-size: 0.85rem;
+        letter-spacing: 0.25em;
+        opacity: 0.7;
+        margin-bottom: 10px;
         text-transform: uppercase;
       }
+      .result-genre-tag {
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 14px;
+        background: #c8a96e;
+        color: #3a5a3a;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .result-content {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
       .loading-overlay {
-        display: none;
         position: fixed;
         inset: 0;
-        background: rgba(58, 90, 58, 0.82);
-        z-index: 999;
-        flex-direction: column;
+        background: rgba(0,0,0,0.55);
+        display: none;
         align-items: center;
         justify-content: center;
-        color: #f5efe6;
-        font-size: 1.3rem;
-        letter-spacing: 0.05em;
+        flex-direction: column;
         gap: 18px;
+        z-index: 9999;
+        color: #f5efe6;
       }
       .loading-overlay.show { display: flex; }
       .spinner {
-        width: 44px; height: 44px;
-        border: 4px solid rgba(245,239,230,0.3);
-        border-top-color: #f5efe6;
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(245,239,230,0.25);
+        border-top-color: #c8a96e;
         border-radius: 50%;
         animation: spin 0.9s linear infinite;
       }
       @keyframes spin { to { transform: rotate(360deg); } }
-      .result-box {
-        display: none;
-        background: rgba(255,255,255,0.13);
-        border: 1.5px solid rgba(245,239,230,0.4);
-        border-radius: 16px;
-        padding: 22px 28px;
-        margin: 24px auto 0;
-        max-width: 520px;
-        color: #f5efe6;
-        font-size: 1.05rem;
-        line-height: 1.7;
-        text-align: center;
-        white-space: pre-wrap;
-      }
-      .result-box.show { display: block; }
-      .result-box .result-title {
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        opacity: 0.65;
-        margin-bottom: 10px;
-      }
-      .selected-genre-tag {
-        display: inline-block;
-        background: #c8a96e;
-        color: #3a5a3a;
-        border-radius: 12px;
-        padding: 2px 12px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
+      #loadingText { letter-spacing: 0.1em; font-size: 1rem; }
     </style>
   </head>
   <body>
-    <nav class="header-name align-box-center">
-      <h3>thismoodthatmusic</h3>
-    </nav>
+    <header><h1>thismoodthatmusic</h1></header>
+    <main>
+      <h2 class="hero-quote">"No cap, these tunes are about to hit different for you."</h2>
+      <h3 class="prompt-question">"What's the mood?"</h3>
 
-    <div class="header-title align-box-center">
-      <h1>"No cap, these tunes are about to hit different for you."</h1>
-      <p class="font-menu-sm">"What's the mood?"</p>
-      <p class="genre-label">-- pick a genre --</p>
-      <div class="genre-selector">
-        <button class="genre-btn active" data-genre="Jazz">Jazz</button>
-        <button class="genre-btn" data-genre="Hip-Hop">Hip-Hop</button>
-        <button class="genre-btn" data-genre="Rock">Rock</button>
-        <button class="genre-btn" data-genre="Pop">Pop</button>
-        <button class="genre-btn" data-genre="R&amp;B">R&amp;B</button>
-        <button class="genre-btn" data-genre="Electronic">Electronic</button>
-        <button class="genre-btn" data-genre="Classical">Classical</button>
-        <button class="genre-btn" data-genre="K-Pop">K-Pop</button>
-        <button class="genre-btn" data-genre="Soul">Soul</button>
-        <button class="genre-btn" data-genre="Lo-fi">Lo-fi</button>
+      <section class="genre-section">
+        <div class="genre-label">-- PICK A GENRE --</div>
+        <div class="genre-selector" id="genreSelector">
+          <button class="genre-btn active" data-genre="Jazz">Jazz</button>
+          <button class="genre-btn" data-genre="Hip-Hop">Hip-Hop</button>
+          <button class="genre-btn" data-genre="Rock">Rock</button>
+          <button class="genre-btn" data-genre="Pop">Pop</button>
+          <button class="genre-btn" data-genre="R&B">R&amp;B</button>
+          <button class="genre-btn" data-genre="Electronic">Electronic</button>
+          <button class="genre-btn" data-genre="Classical">Classical</button>
+          <button class="genre-btn" data-genre="K-Pop">K-Pop</button>
+          <button class="genre-btn" data-genre="Soul">Soul</button>
+          <button class="genre-btn" data-genre="Lo-fi">Lo-fi</button>
+        </div>
+      </section>
+
+      <div class="mood-grid-wrapper">
+      <div class="bt-grid">
+        <div><button class="bt-main" data-mood="Beamin'"><span>Beamin'</span></button></div>
+        <div><button class="bt-main" data-mood="Reflectin'"><span>Reflectin'</span></button></div>
+        <div><button class="bt-main" data-mood="Gloomin'"><span>Gloomin'</span></button></div>
+        <div><button class="bt-main" data-mood="Crackin'"><span>Crackin'</span></button></div>
+        <div><button class="bt-main" data-mood="Bluein'"><span>Bluein'</span></button></div>
+        <div><button class="bt-main" data-mood="Dreamin'"><span>Dreamin'</span></button></div>
+        <div><button class="bt-main" data-mood="Vibin'"><span>Vibin'</span></button></div>
+        <div><button class="bt-main" data-mood="Lovin'"><span>Lovin'</span></button></div>
+        <div><button class="bt-main" data-mood="Freakin'"><span>Freakin'</span></button></div>
+        <div><button class="bt-main" data-mood="Hornin'"><span>Hornin'</span></button></div>
+        <div><button class="bt-main" data-mood="Snoozin'"><span>Snoozin'</span></button></div>
+        <div><button class="bt-main" data-mood="Ragin'"><span>Ragin'</span></button></div>
+        <div><button class="bt-main" data-mood="Spookin'"><span>Spookin'</span></button></div>
+        <div><button class="bt-main" data-mood="Empty.."><span>Empty..</span></button></div>
+        <div><button class="bt-main" data-mood="Stressin'"><span>Stressin'</span></button></div>
+        <div><button class="bt-main" data-mood="Deepin'"><span>Deepin'</span></button></div>
+        <div><button class="bt-main" data-mood="Hyped'"><span>Hyped'</span></button></div>
+        <div><button class="bt-main" data-mood="Chillin'"><span>Chillin'</span></button></div>
+        <div><button class="bt-main" data-mood="Nostalgic"><span>Nostalgic</span></button></div>
+        <div><button class="bt-main" data-mood="Confident"><span>Confident</span></button></div>
       </div>
-    </div>
+      </div>
 
-    <div class="main-menu align-box-center">
-      <div><button class="bt-main" data-mood="Beamin'"><span>Beamin'</span></button></div>
-      <div><button class="bt-main" data-mood="Reflectin'"><span>Reflectin'</span></button></div>
-      <div><button class="bt-main" data-mood="Gloomin'"><span>Gloomin'</span></button></div>
-      <div><button class="bt-main" data-mood="Crackin'"><span>Crackin'</span></button></div>
-      <div><button class="bt-main" data-mood="Bluein'"><span>Bluein'</span></button></div>
-      <div><button class="bt-main" data-mood="Dreamin'"><span>Dreamin'</span></button></div>
-      <div><button class="bt-main" data-mood="Vibin'"><span>Vibin'</span></button></div>
-      <div><button class="bt-main" data-mood="Lovin'"><span>Lovin'</span></button></div>
-      <div><button class="bt-main" data-mood="Freakin'"><span>Freakin'</span></button></div>
-      <div><button class="bt-main" data-mood="Hornin'"><span>Hornin'</span></button></div>
-      <div><button class="bt-main" data-mood="Snoozin'"><span>Snoozin'</span></button></div>
-      <div><button class="bt-main" data-mood="Ragin'"><span>Ragin'</span></button></div>
-      <div><button class="bt-main" data-mood="Spookin'"><span>Spookin'</span></button></div>
-      <div><button class="bt-main" data-mood="Empty.."><span>Empty..</span></button></div>
-      <div><button class="bt-main" data-mood="Stressin'"><span>Stressin'</span></button></div>
-      <div><button class="bt-main" data-mood="Deepin'"><span>Deepin'</span></button></div>
-      <div><button class="bt-main" data-mood="Hyped'"><span>Hyped'</span></button></div>
-      <div><button class="bt-main" data-mood="Chillin'"><span>Chillin'</span></button></div>
-      <div><button class="bt-main" data-mood="Nostalgic"><span>Nostalgic</span></button></div>
-      <div><button class="bt-main" data-mood="Confident"><span>Confident</span></button></div>
-    </div>
-
-    <div class="result-box" id="resultBox">
-      <div class="result-title">your track</div>
-      <div id="resultContent"></div>
-    </div>
+      <div class="result-box" id="resultBox">
+        <div class="result-title">your track</div>
+        <div class="result-genre-tag" id="resultGenreTag"></div>
+        <div class="result-content" id="resultContent"></div>
+      </div>
+    </main>
 
     <div class="loading-overlay" id="loadingOverlay">
       <div class="spinner"></div>
@@ -154,45 +172,45 @@
 
     <script>
       let selectedGenre = "Jazz";
-      document.querySelectorAll(".genre-btn").forEach((btn) => {
+      const genreBtns = document.querySelectorAll(".genre-btn");
+      genreBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-          document.querySelectorAll(".genre-btn").forEach((b) => b.classList.remove("active"));
+          genreBtns.forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
-          selectedGenre = btn.getAttribute("data-genre");
+          selectedGenre = btn.dataset.genre;
         });
       });
 
-      const apiUrl = "/api/recommend";
+      const moodBtns = document.querySelectorAll(".bt-main");
+      const overlay = document.getElementById("loadingOverlay");
+      const loadingText = document.getElementById("loadingText");
+      const resultBox = document.getElementById("resultBox");
+      const resultContent = document.getElementById("resultContent");
+      const resultGenreTag = document.getElementById("resultGenreTag");
 
-      document.querySelectorAll(".bt-main").forEach((button) => {
-        button.addEventListener("click", async () => {
-          const mood = button.getAttribute("data-mood") || "Default Mood";
-          const genre = selectedGenre;
-          const overlay = document.getElementById("loadingOverlay");
-          const loadingText = document.getElementById("loadingText");
-          const resultBox = document.getElementById("resultBox");
-          const resultContent = document.getElementById("resultContent");
-
-          loadingText.textContent = "finding " + genre.toLowerCase() + " vibes for your " + mood.toLowerCase() + " mood...";
+      moodBtns.forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const mood = btn.dataset.mood;
+          loadingText.textContent = "finding " + selectedGenre.toLowerCase() + " vibes for your " + mood.toLowerCase() + " mood...";
           overlay.classList.add("show");
           resultBox.classList.remove("show");
-
           try {
-            const response = await fetch(apiUrl, {
+            const res = await fetch("/api/recommend", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ mood, genre }),
+              body: JSON.stringify({ mood, genre: selectedGenre })
             });
-            const data = await response.json();
-            const recommendation = data.choices?.[0]?.message?.content || "No recommendation found.";
-            overlay.classList.remove("show");
-            resultContent.innerHTML = '<span class="selected-genre-tag">' + genre + '</span><br>' + recommendation;
+            const data = await res.json();
+            resultGenreTag.textContent = selectedGenre + " // " + mood;
+            resultContent.textContent = data.recommendation || data.error || "no result";
             resultBox.classList.add("show");
             resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
-          } catch (error) {
+          } catch (e) {
+            resultGenreTag.textContent = selectedGenre + " // " + mood;
+            resultContent.textContent = "error: " + e.message;
+            resultBox.classList.add("show");
+          } finally {
             overlay.classList.remove("show");
-            console.error(error);
-            alert("노래 추천 중 오류가 발생했습니다.");
           }
         });
       });
