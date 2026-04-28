@@ -1,6 +1,9 @@
 {
-    "rewrites": [
-          { "source": "/api/recommend", "destination": "/mood2music/api/recommend.js" },
-          { "source": "/(.*)", "destination": "/mood2music/index.html" }
-    ]
+      "rewrites": [
+              { "source": "/api/recommend", "destination": "/mood2music/api/recommend.js" },
+              { "source": "/css/:path*", "destination": "/mood2music/css/:path*" },
+              { "source": "/fontawesome1/:path*", "destination": "/mood2music/fontawesome1/:path*" },
+              { "source": "/mood2music/:path*", "destination": "/mood2music/mood2music/:path*" },
+              { "source": "/(.*)", "destination": "/mood2music/index.html" }
+      ]
 }
