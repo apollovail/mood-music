@@ -3,10 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>document</title>
-
+    <title>thismoodthatmusic</title>
     <link href="fontawesome1/css/all.min.css" rel="stylesheet" />
     <link href="css/moneyy.css" rel="stylesheet" />
+    <style>
+      .genre-selector {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 14px;
+      }
+      .genre-btn {
+        padding: 7px 18px;
+        border-radius: 20px;
+        border: 2px solid #c8a96e;
+        background: transparent;
+        color: #f5efe6;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.18s, color 0.18s;
+        letter-spacing: 0.04em;
+      }
+      .genre-btn.active, .genre-btn:hover {
+        background: #c8a96e;
+        color: #3a5a3a;
+      }
+      .genre-label {
+        font-size: 0.82rem;
+        opacity: 0.75;
+        margin-top: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .loading-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(58, 90, 58, 0.82);
+        z-index: 999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #f5efe6;
+        font-size: 1.3rem;
+        letter-spacing: 0.05em;
+        gap: 18px;
+      }
+      .loading-overlay.show { display: flex; }
+      .spinner {
+        width: 44px; height: 44px;
+        border: 4px solid rgba(245,239,230,0.3);
+        border-top-color: #f5efe6;
+        border-radius: 50%;
+        animation: spin 0.9s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .result-box {
+        display: none;
+        background: rgba(255,255,255,0.13);
+        border: 1.5px solid rgba(245,239,230,0.4);
+        border-radius: 16px;
+        padding: 22px 28px;
+        margin: 24px auto 0;
+        max-width: 520px;
+        color: #f5efe6;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        text-align: center;
+        white-space: pre-wrap;
+      }
+      .result-box.show { display: block; }
+      .result-box .result-title {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.65;
+        margin-bottom: 10px;
+      }
+      .selected-genre-tag {
+        display: inline-block;
+        background: #c8a96e;
+        color: #3a5a3a;
+        border-radius: 12px;
+        padding: 2px 12px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+    </style>
   </head>
   <body>
     <nav class="header-name align-box-center">
@@ -15,191 +103,94 @@
 
     <div class="header-title align-box-center">
       <h1>"No cap, these tunes are about to hit different for you."</h1>
-      <p class="font-menu-sm">"What’s the mood?"</p>
-      <div>
-        <select name="genre" id="">
-          <option value="">Jazz</option>
-          <option value="">Hiphop</option>
-          <option value="">ROCK</option>
-          <option value="">POP</option>
-        </select>
+      <p class="font-menu-sm">"What's the mood?"</p>
+      <p class="genre-label">-- pick a genre --</p>
+      <div class="genre-selector">
+        <button class="genre-btn active" data-genre="Jazz">Jazz</button>
+        <button class="genre-btn" data-genre="Hip-Hop">Hip-Hop</button>
+        <button class="genre-btn" data-genre="Rock">Rock</button>
+        <button class="genre-btn" data-genre="Pop">Pop</button>
+        <button class="genre-btn" data-genre="R&amp;B">R&amp;B</button>
+        <button class="genre-btn" data-genre="Electronic">Electronic</button>
+        <button class="genre-btn" data-genre="Classical">Classical</button>
+        <button class="genre-btn" data-genre="K-Pop">K-Pop</button>
+        <button class="genre-btn" data-genre="Soul">Soul</button>
+        <button class="genre-btn" data-genre="Lo-fi">Lo-fi</button>
       </div>
     </div>
 
     <div class="main-menu align-box-center">
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Beamin’"
-          data-url="OTHER/beamin.html"
-        >
-          <span>😁 Beamin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Reflectin’"
-          data-url="OTHER/reflectin.html"
-        >
-          🤔 Reflectin’
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Gloomin’"
-          data-url="OTHER/gloomin.html"
-        >
-          <span>😢 Gloomin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Crackin’"
-          data-url="OTHER/crackin.html"
-        >
-          <span>🤣 Crackin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Bluein’"
-          data-url="OTHER/bluein.html"
-        >
-          <span>😶 Bluein’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Dreamin’"
-          data-url="OTHER/dreamin.html"
-        >
-          <span>🤩 Dreamin’</span>
-        </button>
-      </div>
-      <div>
-        <button class="bt-main" data-mood="Vibin’" data-url="OTHER/vibin.html">
-          <span>
-            <img
-              src="https://cdn3.emoji.gg/emojis/6124-chillguy.png"
-              width="22px"
-              height="22px"
-              alt="ChillGuy"
-            />
-            Vibin’
-          </span>
-        </button>
-      </div>
-      <div>
-        <button class="bt-main" data-mood="Lovin’" data-url="OTHER/lovin.html">
-          <span>😍 Lovin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Freakin’"
-          data-url="OTHER/freakin.html"
-        >
-          <span>🤨 Freakin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Hornin’"
-          data-url="OTHER/hornin.html"
-        >
-          <span>🤤 Hornin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Snoozin’"
-          data-url="OTHER/snoozin.html"
-        >
-          <span>🥱 Snoozin’</span>
-        </button>
-      </div>
-      <div>
-        <button class="bt-main" data-mood="Ragin’" data-url="OTHER/ragin.html">
-          <span>🔥 Ragin’</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Spookin’"
-          data-url="OTHER/spookin.html"
-        >
-          <span>😨 Spookin’</span>
-        </button>
-      </div>
-      <div>
-        <button class="bt-main" data-mood="Empty.." data-url="OTHER/empty.html">
-          <span>😔 Empty..</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Stressin’"
-          data-url="OTHER/stressin.html"
-        >
-          <span>😬 Stressin</span>
-        </button>
-      </div>
-      <div>
-        <button
-          class="bt-main"
-          data-mood="Deepin’"
-          data-url="OTHER/deepin.html"
-        >
-          <span>🤓 Deepin’</span>
-        </button>
-      </div>
+      <div><button class="bt-main" data-mood="Beamin'"><span>Beamin'</span></button></div>
+      <div><button class="bt-main" data-mood="Reflectin'"><span>Reflectin'</span></button></div>
+      <div><button class="bt-main" data-mood="Gloomin'"><span>Gloomin'</span></button></div>
+      <div><button class="bt-main" data-mood="Crackin'"><span>Crackin'</span></button></div>
+      <div><button class="bt-main" data-mood="Bluein'"><span>Bluein'</span></button></div>
+      <div><button class="bt-main" data-mood="Dreamin'"><span>Dreamin'</span></button></div>
+      <div><button class="bt-main" data-mood="Vibin'"><span>Vibin'</span></button></div>
+      <div><button class="bt-main" data-mood="Lovin'"><span>Lovin'</span></button></div>
+      <div><button class="bt-main" data-mood="Freakin'"><span>Freakin'</span></button></div>
+      <div><button class="bt-main" data-mood="Hornin'"><span>Hornin'</span></button></div>
+      <div><button class="bt-main" data-mood="Snoozin'"><span>Snoozin'</span></button></div>
+      <div><button class="bt-main" data-mood="Ragin'"><span>Ragin'</span></button></div>
+      <div><button class="bt-main" data-mood="Spookin'"><span>Spookin'</span></button></div>
+      <div><button class="bt-main" data-mood="Empty.."><span>Empty..</span></button></div>
+      <div><button class="bt-main" data-mood="Stressin'"><span>Stressin'</span></button></div>
+      <div><button class="bt-main" data-mood="Deepin'"><span>Deepin'</span></button></div>
+      <div><button class="bt-main" data-mood="Hyped'"><span>Hyped'</span></button></div>
+      <div><button class="bt-main" data-mood="Chillin'"><span>Chillin'</span></button></div>
+      <div><button class="bt-main" data-mood="Nostalgic"><span>Nostalgic</span></button></div>
+      <div><button class="bt-main" data-mood="Confident"><span>Confident</span></button></div>
     </div>
 
-    <!-- OpenAI API 호출 스크립트 -->
-    <script>
-      // 이제는 OpenAI 서버 대신, "Vercel API"를 호출할 예정!
-      const apiUrl =
-        "https://mood-music-tau.vercel.app.vercel.app/api/recommend";
+    <div class="result-box" id="resultBox">
+      <div class="result-title">your track</div>
+      <div id="resultContent"></div>
+    </div>
 
-      const buttons = document.querySelectorAll(".bt-main");
-      buttons.forEach((button) => {
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <span id="loadingText">finding your vibe...</span>
+    </div>
+
+    <script>
+      let selectedGenre = "Jazz";
+      document.querySelectorAll(".genre-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".genre-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedGenre = btn.getAttribute("data-genre");
+        });
+      });
+
+      const apiUrl = "/api/recommend";
+
+      document.querySelectorAll(".bt-main").forEach((button) => {
         button.addEventListener("click", async () => {
           const mood = button.getAttribute("data-mood") || "Default Mood";
-          const url = button.getAttribute("data-url");
+          const genre = selectedGenre;
+          const overlay = document.getElementById("loadingOverlay");
+          const loadingText = document.getElementById("loadingText");
+          const resultBox = document.getElementById("resultBox");
+          const resultContent = document.getElementById("resultContent");
 
-          if (!url) {
-            alert("URL이 설정되지 않았습니다!");
-            return;
-          }
+          loadingText.textContent = "finding " + genre.toLowerCase() + " vibes for your " + mood.toLowerCase() + " mood...";
+          overlay.classList.add("show");
+          resultBox.classList.remove("show");
 
           try {
-            // fetch 할 때, 더 이상 apiKey를 보내지 않음!
             const response = await fetch(apiUrl, {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ mood }),
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ mood, genre }),
             });
-
             const data = await response.json();
-            // OpenAI 응답 내용
-            const recommendations = data.choices?.[0]?.message?.content || "";
-
-            window.location.href = `${url}?recommendations=${encodeURIComponent(
-              recommendations
-            )}`;
+            const recommendation = data.choices?.[0]?.message?.content || "No recommendation found.";
+            overlay.classList.remove("show");
+            resultContent.innerHTML = '<span class="selected-genre-tag">' + genre + '</span><br>' + recommendation;
+            resultBox.classList.add("show");
+            resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
           } catch (error) {
+            overlay.classList.remove("show");
             console.error(error);
             alert("노래 추천 중 오류가 발생했습니다.");
           }
