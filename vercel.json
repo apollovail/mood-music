@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+          { "source": "/api/recommend", "destination": "/mood2music/api/recommend.js" },
+          { "source": "/(.*)", "destination": "/mood2music/index.html" }
+    ]
+}
