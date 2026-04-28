@@ -1,8 +1,13 @@
 {
+  "functions": {
+    "mood2music/api/recommend.js": {
+      "runtime": "@vercel/node"
+    }
+  },
   "rewrites": [
     { "source": "/css/:path*", "destination": "/mood2music/css/:path*" },
     { "source": "/fontawesome1/:path*", "destination": "/mood2music/fontawesome1/:path*" },
     { "source": "/mood2music/:path*", "destination": "/mood2music/mood2music/:path*" },
-    { "source": "/(.*)", "destination": "/mood2music/index.html" }
+    { "source": "/((?!api/).*)" , "destination": "/mood2music/index.html" }
   ]
 }
